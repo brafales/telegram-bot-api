@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/go-telegram-bot-api/telegram-bot-api"
+	"github.com/brafales/telegram-bot-api"
 )
 
 const (
@@ -59,7 +59,7 @@ func TestGetUpdates(t *testing.T) {
 func TestSendWithMessage(t *testing.T) {
 	bot, _ := getBot(t)
 
-	msg := tgbotapi.NewMessage(ChatID, "A test message from the test library in telegram-bot-api")
+	msg := tgbotapi.NewMessage(ChatID, "A test message from the test library in telegram-bot-api", false)
 	msg.ParseMode = "markdown"
 	_, err := bot.Send(msg)
 
@@ -72,7 +72,7 @@ func TestSendWithMessage(t *testing.T) {
 func TestSendWithMessageReply(t *testing.T) {
 	bot, _ := getBot(t)
 
-	msg := tgbotapi.NewMessage(ChatID, "A test message from the test library in telegram-bot-api")
+	msg := tgbotapi.NewMessage(ChatID, "A test message from the test library in telegram-bot-api", false)
 	msg.ReplyToMessageID = ReplyToMessageID
 	_, err := bot.Send(msg)
 
@@ -392,7 +392,7 @@ func TestSendChatConfig(t *testing.T) {
 func TestSendEditMessage(t *testing.T) {
 	bot, _ := getBot(t)
 
-	msg, err := bot.Send(tgbotapi.NewMessage(ChatID, "Testing editing."))
+	msg, err := bot.Send(tgbotapi.NewMessage(ChatID, "Testing editing.", false))
 	if err != nil {
 		t.Error(err)
 		t.Fail()
@@ -497,7 +497,7 @@ func ExampleNewBotAPI() {
 
 		log.Printf("[%s] %s", update.Message.From.UserName, update.Message.Text)
 
-		msg := tgbotapi.NewMessage(update.Message.Chat.ID, update.Message.Text)
+		msg := tgbotapi.NewMessage(update.Message.Chat.ID, update.Message.Text, false)
 		msg.ReplyToMessageID = update.Message.MessageID
 
 		bot.Send(msg)

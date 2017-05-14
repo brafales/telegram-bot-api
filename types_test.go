@@ -1,9 +1,10 @@
 package tgbotapi_test
 
 import (
-	"github.com/go-telegram-bot-api/telegram-bot-api"
 	"testing"
 	"time"
+
+	"github.com/brafales/telegram-bot-api"
 )
 
 func TestUserStringWith(t *testing.T) {
